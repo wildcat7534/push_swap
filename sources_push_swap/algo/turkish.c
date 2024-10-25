@@ -6,7 +6,7 @@
 /*   By: cmassol <cmassol@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/25 13:27:28 by cmassol           #+#    #+#             */
-/*   Updated: 2024/10/25 18:07:57 by cmassol          ###   ########.fr       */
+/*   Updated: 2024/10/25 19:54:23 by cmassol          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -91,38 +91,38 @@ void	merge_stack(t_stack *stack_a, t_stack *stack_b)
 
 // turkish sort algorithm
 
-void	turkish_sort(t_stack *stack_a, t_stack *stack_b)
+void	turkish_sort(t_stack **stack_a, t_stack **stack_b)
 {
 	int	min;
 	int	max;
 	int	median;
 
-	if (is_sorted(stack_a))
-		return ;
-	if (stack_a->size == 2)
+	if ((*stack_a)->size == 2)
 	{
 		sa(stack_a);
-		add_instruction(stack_a, "sa");
+		add_instruction(*stack_a, "sa");
 	}
-	else if (stack_a->size == 3)
+	else if ((*stack_a)->size == 3)
 	{
 		ft_sort_three(stack_a);
 	}
 	else
 	{
-		min = find_min(stack_a);
-		max = find_max(stack_a);
+		min = find_min(*stack_a);
+		max = find_max(*stack_a);
 		median = (min + max) / 2;
-		if (stack_a->size > 10)
+		if (is_sorted(*stack_a))
+			return ;
+		if ((*stack_a)->size > 10)
 		{
-			split_stack(stack_a, median);
+			split_stack(*stack_a, median);
 			turkish_sort(stack_a, stack_b);
 			turkish_sort(stack_b, stack_a);
-			merge_stack(stack_a, stack_b);
+			merge_stack(*stack_a, *stack_b);
 		}
 		else
 		{
-			ft_sort(stack_a, stack_b);
+			ft_sort(*stack_a, *stack_b);
 		}
 	}
 }
