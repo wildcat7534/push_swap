@@ -6,7 +6,7 @@
 /*   By: cmassol <cmassol@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/25 13:30:01 by cmassol           #+#    #+#             */
-/*   Updated: 2024/10/25 20:30:35 by cmassol          ###   ########.fr       */
+/*   Updated: 2024/10/25 23:04:10 by cmassol          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,6 @@ void	ft_sort(t_stack **stack_a, t_stack **stack_b)
 	if ((*stack_a)->size == 2)
 	{
 		sa(stack_a);
-		add_instruction(*stack_a, "sa");
 	}
 	else if ((*stack_a)->size == 3)
 	{
@@ -36,7 +35,7 @@ void	ft_sort(t_stack **stack_a, t_stack **stack_b)
 		find_min_max_median(*stack_a, &min, &max, &median);
 		if ((*stack_a)->size > 10)
 		{
-			split_stack(*stack_a, median);
+			split_stack(stack_a, median, stack_b);
 			ft_sort(stack_a, stack_b);
 			ft_sort(stack_b, stack_a);
 		}

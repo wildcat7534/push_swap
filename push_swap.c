@@ -6,7 +6,7 @@
 /*   By: cmassol <cmassol@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/17 15:59:57 by cmassol           #+#    #+#             */
-/*   Updated: 2024/10/25 20:12:31 by cmassol          ###   ########.fr       */
+/*   Updated: 2024/10/25 23:31:46 by cmassol          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,34 +36,27 @@ int	init_stack(t_stack **stack_a, int ac, char **av, t_stack **stack_b)
 	(*stack_a)->nb = malloc(sizeof(int) * ac);
 	if (!(*stack_a)->nb)
 		return (1);
-	(*stack_a)->instructions = malloc(sizeof(char *) * ac);
-	if (!(*stack_a)->instructions)
-		return (1);
-	(*stack_a)->size = ac - 1;
-	(*stack_a)->size_instructions = 0;
 	while (i < ac)
 	{
 		(*stack_a)->nb[i - 1] = ft_atoi(av[i]);
 		i++;
 	}
+	(*stack_a)->size = ac - 1;
+	(*stack_a)->size_instructions = 0;
 	*stack_b = malloc(sizeof(t_stack));
 	if (!*stack_b)
 		return (1);
 	(*stack_b)->nb = malloc(sizeof(int) * ac);
 	if (!(*stack_b)->nb)
 		return (1);
-	(*stack_b)->instructions = malloc(sizeof(char *) * ac);
-	if (!(*stack_b)->instructions)
-		return (1);
 	(*stack_b)->size = 0;
-	(*stack_b)->size_instructions = 0;
 	return (0);
 }
 
 int	main(int ac, char **av)
 {
-	t_stack *stack_a;
-	t_stack *stack_b;
+	t_stack	*stack_a;
+	t_stack	*stack_b;
 
 	stack_a = NULL;
 	stack_b = NULL;
@@ -84,7 +77,11 @@ int	main(int ac, char **av)
 	if (is_sorted(&stack_a))
 		return (0);
 	turkish_sort(&stack_a, &stack_b);
-	print_instructions(stack_a);
 	print_stack(stack_a, stack_b);
+	print_nb_instructions(&stack_a);
+	free(stack_a->nb);
+	free(stack_a);
+	free(stack_b->nb);
+	free(stack_b);
 	return (0);
 }

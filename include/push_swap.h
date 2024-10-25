@@ -6,7 +6,7 @@
 /*   By: cmassol <cmassol@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/17 16:08:18 by cmassol           #+#    #+#             */
-/*   Updated: 2024/10/25 20:52:36 by cmassol          ###   ########.fr       */
+/*   Updated: 2024/10/25 22:59:24 by cmassol          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,6 @@ typedef struct s_stack
 	int				*nb;
 	int				size;
 	int				size_instructions;
-	char			**instructions;
 }	t_stack;
 
 void	sa(t_stack **stack);
@@ -40,8 +39,8 @@ void	rra(t_stack **stack);
 void	rrb(t_stack **stack);
 void	rrr(t_stack **stack, t_stack **stack_b);
 void	print_stack(t_stack *stack, t_stack *stack_b);
-void	print_instructions(t_stack *stack);
-void	add_instruction(t_stack *stack, char *instruction);
+void	print_nb_instructions(t_stack **stack);
+void	add_instruction(t_stack **stack, char *instruction);
 void	exec_instruction(t_stack *stack, char *instruction);
 int		check_errors(int ac, char **av);
 int		init_stack(t_stack **stack, int ac, char **av, t_stack **stack_b);

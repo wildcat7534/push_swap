@@ -6,7 +6,7 @@
 /*   By: cmassol <cmassol@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/25 11:52:43 by cmassol           #+#    #+#             */
-/*   Updated: 2024/10/25 19:42:26 by cmassol          ###   ########.fr       */
+/*   Updated: 2024/10/25 22:59:29 by cmassol          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,6 +27,8 @@ void	rra(t_stack **stack)
 		i--;
 	}
 	(*stack)->nb[0] = tmp;
+	(*stack)->size_instructions++;
+	ft_printf("rra\n");
 }
 
 void	rrb(t_stack **stack)
@@ -44,10 +46,14 @@ void	rrb(t_stack **stack)
 		i--;
 	}
 	(*stack)->nb[0] = tmp;
+	(*stack)->size_instructions++;
+	ft_printf("rrb\n");
 }
 
-void	rrr(t_stack **stack)
+void	rrr(t_stack **stack_a, t_stack **stack_b)
 {
-	rra(stack);
-	rrb(stack);
+	rra(stack_a);
+	rrb(stack_b);
+	(*stack_a)->size_instructions++;
+	ft_printf("rrr\n");
 }

@@ -6,7 +6,7 @@
 /*   By: cmassol <cmassol@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/25 13:27:28 by cmassol           #+#    #+#             */
-/*   Updated: 2024/10/25 20:47:18 by cmassol          ###   ########.fr       */
+/*   Updated: 2024/10/25 23:01:42 by cmassol          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,12 +32,10 @@ void	split_stack(t_stack **stack_a, int median, t_stack **stack_b)
 		if ((*stack_a)->nb[0] < median)
 		{
 			pb(stack_a, stack_b);
-			add_instruction(*stack_a, "pb");
 		}
 		else
 		{
 			ra(stack_a);
-			add_instruction(*stack_a, "ra");
 		}
 	}
 }
@@ -51,7 +49,6 @@ void	merge_stack(t_stack **stack_a, t_stack **stack_b)
 	while (i < (*stack_b)->size)
 	{
 		pa(stack_a, stack_b);
-		add_instruction(*stack_a, "pa");
 		i++;
 	}
 }
@@ -67,7 +64,6 @@ void	turkish_sort(t_stack **stack_a, t_stack **stack_b)
 	if ((*stack_a)->size == 2)
 	{
 		sa(stack_a);
-		add_instruction(*stack_a, "sa");
 	}
 	else if ((*stack_a)->size == 3)
 	{

@@ -6,7 +6,7 @@
 /*   By: cmassol <cmassol@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/25 20:22:40 by cmassol           #+#    #+#             */
-/*   Updated: 2024/10/25 20:53:39 by cmassol          ###   ########.fr       */
+/*   Updated: 2024/10/25 23:30:35 by cmassol          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,5 +42,6 @@ void	ft_sort_10(t_stack **stack_a, t_stack **stack_b)
 	while ((*stack_b)->size > 0)
 	{
 		pa(stack_a, stack_b);
+
 	}
 }

@@ -6,7 +6,7 @@
 /*   By: cmassol <cmassol@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/25 11:50:52 by cmassol           #+#    #+#             */
-/*   Updated: 2024/10/25 20:38:55 by cmassol          ###   ########.fr       */
+/*   Updated: 2024/10/25 22:54:15 by cmassol          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,11 +34,13 @@ void	pa(t_stack **stack_a, t_stack **stack_b)
 	}
 	(*stack_a)->size++;
 	(*stack_b)->size--;
+	(*stack_a)->size_instructions++;
+	ft_printf("pa\n");
 }
 // push the top element of stack a to stack b
 void	pb(t_stack **stack_a, t_stack **stack_b)
 {
-	int	i;
+	int i;
 
 	if ((*stack_a)->size == 0)
 		return ;
@@ -57,4 +59,6 @@ void	pb(t_stack **stack_a, t_stack **stack_b)
 	}
 	(*stack_b)->size++;
 	(*stack_a)->size--;
+	(*stack_a)->size_instructions++;
+	ft_printf("pb\n");
 }

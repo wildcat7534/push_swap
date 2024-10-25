@@ -6,28 +6,28 @@
 /*   By: cmassol <cmassol@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/17 18:19:57 by cmassol           #+#    #+#             */
-/*   Updated: 2024/10/25 12:13:51 by cmassol          ###   ########.fr       */
+/*   Updated: 2024/10/25 23:05:29 by cmassol          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../include/push_swap.h"
 
-void	print_instructions(t_stack *stack)
+void	print_nb_instructions(t_stack **stack)
 {
-	int i;
+	ft_printf("size_instructions = %d\n", (*stack)->size_instructions);
+}
+/*
+void	add_instruction(t_stack **stack, char *instruction)
+{
+	int	i;
 
 	i = 0;
-	while (i < stack->size_instructions)
+	while (i < (*stack)->size_instructions)
 	{
-		ft_printf("%s\n", stack->instructions[i]);
-	i++;
+		i++;
 	}
-}
-
-void	add_instruction(t_stack *stack, char *instruction)
-{
-	stack->instructions[stack->size_instructions] = ft_strdup(instruction);
-	stack->size_instructions++;
+	(*stack)->instructions[i] = ft_strdup(instruction);
+	(*stack)->size_instructions++;
 }
 
 void	exec_instruction(t_stack *stack, char *instruction)
@@ -59,7 +59,7 @@ void	exec_instruction(t_stack *stack, char *instruction)
 
 void	exec_instructions(t_stack *stack)
 {
-	int i;
+	int	i;
 
 	i = 0;
 	while (i < stack->size_instructions)
@@ -71,7 +71,7 @@ void	exec_instructions(t_stack *stack)
 
 void	exec_instructions_no_print(t_stack *stack)
 {
-	int i;
+	int	i;
 
 	i = 0;
 	while (i < stack->size_instructions)
@@ -83,7 +83,7 @@ void	exec_instructions_no_print(t_stack *stack)
 
 void	exec_instructions_no_print_no_free(t_stack *stack)
 {
-	int i;
+	int	i;
 
 	i = 0;
 	while (i < stack->size_instructions)
@@ -95,7 +95,7 @@ void	exec_instructions_no_print_no_free(t_stack *stack)
 
 void	free_instructions(t_stack *stack)
 {
-	int i;
+	int	i;
 
 	i = 0;
 	while (i < stack->size_instructions)
@@ -115,4 +115,4 @@ void	free_instructions_no_print(t_stack *stack)
 		free(stack->instructions[i]);
 		i++;
 	}
-}
+}*/
