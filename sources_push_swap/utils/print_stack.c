@@ -1,53 +1,33 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   rotate.c                                           :+:      :+:    :+:   */
+/*   print_stack.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: cmassol <cmassol@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/10/25 11:51:30 by cmassol           #+#    #+#             */
-/*   Updated: 2024/10/25 18:07:24 by cmassol          ###   ########.fr       */
+/*   Created: 2024/10/25 17:38:24 by cmassol           #+#    #+#             */
+/*   Updated: 2024/10/25 18:08:43 by cmassol          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../include/push_swap.h"
 
-void	ra(t_stack *stack)
+void	print_stacks(t_stack *stack_a, t_stack *stack_b)
 {
-	int	tmp;
-	int	i;
+	int i;
 
-	if (stack->size < 2)
-		return ;
-	tmp = stack->nb[0];
 	i = 0;
-	while (i < stack->size - 1)
+	ft_printf("Stack A:\n");
+	while (i < stack_a->size)
 	{
-		stack->nb[i] = stack->nb[i + 1];
+		ft_printf("stack_a : %d\n", stack_a->nb[i]);
 		i++;
 	}
-	stack->nb[stack->size - 1] = tmp;
-}
-
-void	rb(t_stack *stack)
-{
-	int	tmp;
-	int	i;
-
-	if (stack->size < 2)
-		return ;
-	tmp = stack->nb[0];
 	i = 0;
-	while (i < stack->size - 1)
+	ft_printf("Stack B:\n");
+	while (i < stack_b->size)
 	{
-		stack->nb[i] = stack->nb[i + 1];
+		ft_printf("stack_b : %d\n", stack_b->nb[i]);
 		i++;
 	}
-	stack->nb[stack->size - 1] = tmp;
-}
-
-void	rr(t_stack *stack)
-{
-	ra(stack);
-	rb(stack);
 }

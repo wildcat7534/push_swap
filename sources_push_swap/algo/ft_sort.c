@@ -6,24 +6,90 @@
 /*   By: cmassol <cmassol@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/25 13:30:01 by cmassol           #+#    #+#             */
-/*   Updated: 2024/10/25 16:16:14 by cmassol          ###   ########.fr       */
+/*   Updated: 2024/10/25 18:07:24 by cmassol          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../include/push_swap.h"
 
-void	ft_sort(t_stack *stack)
+void	ft_sort(t_stack *stack_a, t_stack *stack_b)
 {
-	turkish_sort(stack);
+	int	min;
+	int	max;
+	int	median;
+
+	if (is_sorted(stack_a))
+		return ;
+	if (stack_a->size == 2)
+	{
+		sa(stack_a);
+		add_instruction(stack_a, "sa");
+	}
+	else if (stack_a->size == 3)
+	{
+		ft_sort_three(stack_a);
+	}
+	else
+	{
+		min = stack_a->nb[0];
+		max = stack_a->nb[0];
+		find_min_max_median(stack_a, &min, &max, &median);
+		if (stack_a->size > 10)
+		{
+			split_stack(stack_a, median);
+			ft_sort(stack_a, stack_b);
+			ft_sort(stack_b, stack_a);
+		}
+		else
+		{
+			ft_sort_10(stack_a, stack_b);
+		}
+	}
 }
+// just sort the stack a for ten or less elements
+void	ft_sort_10(t_stack *stack_a, t_stack *stack_b)
+{
+	int	min;
+	int	max;
+	int	median;
+
+	if (is_sorted(stack_a))
+		return ;
+	if (stack_a->size == 2)
+	{
+		sa(stack_a);
+		add_instruction(stack_a, "sa");
+	}
+	else if (stack_a->size == 3)
+	{
+		ft_sort_three(stack_a);
+	}
+	else
+	{
+		min = stack_a->nb[0];
+		max = stack_a->nb[0];
+		find_min_max_median(stack_a, &min, &max, &median);
+		if (stack_a->size > 10)
+		{
+			split_stack(stack_a, median);
+			ft_sort_10(stack_a, stack_b);
+			ft_sort_10(stack_a, stack_b);
+		}
+		else
+		{
+			ft_sort(stack_a, stack_b);
+		}
+	}
+}
+
 int	is_sorted(t_stack *stack)
 {
 	int	i;
 
 	i = 0;
-	while (i < stack->size_a - 1)
+	while (i < stack->size - 1)
 	{
-		if (stack->a[i] > stack->a[i + 1])
+		if (stack->nb[i] > stack->nb[i + 1])
 			return (0);
 		i++;
 	}
@@ -34,9 +100,9 @@ int	is_rev_sorted(t_stack *stack)
 	int	i;
 
 	i = 0;
-	while (i < stack->size_a - 1)
+	while (i < stack->size - 1)
 	{
-		if (stack->a[i] < stack->a[i + 1])
+		if (stack->nb[i] < stack->nb[i + 1])
 			return (0);
 		i++;
 	}
@@ -47,9 +113,9 @@ int	is_median(t_stack *stack, int median)
 	int	i;
 
 	i = 0;
-	while (i < stack->size_a)
+	while (i < stack->size)
 	{
-		if (stack->a[i] == median)
+		if (stack->nb[i] == median)
 			return (1);
 		i++;
 	}
@@ -60,9 +126,9 @@ int	is_rev_median(t_stack *stack, int median)
 	int	i;
 
 	i = 0;
-	while (i < stack->size_a)
+	while (i < stack->size)
 	{
-		if (stack->a[i] == median)
+		if (stack->nb[i] == median)
 			return (1);
 		i++;
 	}
@@ -73,12 +139,12 @@ void	find_min_max_median(t_stack *stack, int *min, int *max, int *median)
 	int	i;
 
 	i = 0;
-	while (i < stack->size_a)
+	while (i < stack->size)
 	{
-		if (stack->a[i] < *min)
-			*min = stack->a[i];
-		if (stack->a[i] > *max)
-			*max = stack->a[i];
+		if (stack->nb[i] < *min)
+			*min = stack->nb[i];
+		if (stack->nb[i] > *max)
+			*max = stack->nb[i];
 		i++;
 	}
 	*median = (*min + *max) / 2;
@@ -89,9 +155,9 @@ int	is_max(t_stack *stack, int max)
 	int	i;
 
 	i = 0;
-	while (i < stack->size_a)
+	while (i < stack->size)
 	{
-		if (stack->a[i] == max)
+		if (stack->nb[i] == max)
 			return (1);
 		i++;
 	}
@@ -102,9 +168,9 @@ int	is_min(t_stack *stack, int min)
 	int	i;
 
 	i = 0;
-	while (i < stack->size_a)
+	while (i < stack->size)
 	{
-		if (stack->a[i] == min)
+		if (stack->nb[i] == min)
 			return (1);
 		i++;
 	}
@@ -115,9 +181,9 @@ int	is_rev_max(t_stack *stack, int max)
 	int	i;
 
 	i = 0;
-	while (i < stack->size_a)
+	while (i < stack->size)
 	{
-		if (stack->a[i] == max)
+		if (stack->nb[i] == max)
 			return (1);
 		i++;
 	}
@@ -128,9 +194,9 @@ int	is_rev_min(t_stack *stack, int min)
 	int	i;
 
 	i = 0;
-	while (i < stack->size_a)
+	while (i < stack->size)
 	{
-		if (stack->a[i] == min)
+		if (stack->nb[i] == min)
 			return (1);
 		i++;
 	}

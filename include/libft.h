@@ -6,7 +6,7 @@
 /*   By: cmassol <cmassol@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/21 01:16:26 by cmassol           #+#    #+#             */
-/*   Updated: 2024/10/25 15:58:10 by cmassol          ###   ########.fr       */
+/*   Updated: 2024/10/25 17:33:57 by cmassol          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,6 +30,7 @@ typedef struct s_list_char
 }						t_lst_char;
 
 void					ft_free(t_lst_char *lst);
+//static int				ft_free(char **s, size_t i);
 int						ft_atoi(const char *str);
 int						ft_isalpha(int c);
 int						ft_isdigit(int c);

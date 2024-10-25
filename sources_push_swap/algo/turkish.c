@@ -6,7 +6,7 @@
 /*   By: cmassol <cmassol@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/25 13:27:28 by cmassol           #+#    #+#             */
-/*   Updated: 2024/10/25 16:18:11 by cmassol          ###   ########.fr       */
+/*   Updated: 2024/10/25 18:07:57 by cmassol          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,13 +20,78 @@
 // 5. if the stack has more than 10 elements, split the stack in half and sort each half
 // 6. if the stack has less than 10 elements, sort the stack
 
-// find the min, max and median of the stack
+// split stack
 
+void	split_stack(t_stack *stack_a, int median)
+{
+	int	i;
+
+	i = 0;
+	while (i < stack_a->size)
+	{
+		if (stack_a->nb[i] < median)
+		{
+			pb(stack_a);
+			add_instruction(stack_a, "pb");
+		}
+		else
+		{
+			ra(stack_a);
+			add_instruction(stack_a, "ra");
+		}
+	}
+}
+
+int	find_min(t_stack *stack)
+{
+	int	i;
+	int	min;
+
+	i = 0;
+	min = stack->nb[0];
+	while (i < stack->size)
+	{
+		if (stack->nb[i] < min)
+			min = stack->nb[i];
+		i++;
+	}
+	return (min);
+}
+int	find_max(t_stack *stack)
+{
+	int	i;
+	int	max;
+
+	i = 0;
+	max = stack->nb[0];
+	while (i < stack->size)
+	{
+		if (stack->nb[i] > max)
+			max = stack->nb[i];
+		i++;
+	}
+	return (max);
+}
+
+// merge stack
+
+void	merge_stack(t_stack *stack_a, t_stack *stack_b)
+{
+	int	i;
+
+	i = 0;
+	while (i < stack_b->size)
+	{
+		pa(stack_a);
+		add_instruction(stack_a, "pa");
+		i++;
+	}
+}
 
 
 // turkish sort algorithm
 
-void	turkish_sort(t_stack *stack_a)
+void	turkish_sort(t_stack *stack_a, t_stack *stack_b)
 {
 	int	min;
 	int	max;
@@ -34,37 +99,33 @@ void	turkish_sort(t_stack *stack_a)
 
 	if (is_sorted(stack_a))
 		return ;
-	if (stack_a <= 3)
+	if (stack_a->size == 2)
+	{
+		sa(stack_a);
+		add_instruction(stack_a, "sa");
+	}
+	else if (stack_a->size == 3)
 	{
 		ft_sort_three(stack_a);
-		return ;
 	}
-	min = stack_a->a[0];
-	max = stack_a->a[0];
-	median = stack_a->a[0];
-	find_min_max_median(stack_a, &min, &max, &median);
-// 	if stack is above 10, we split the stack in half and sort each half
-// 	we then merge the two stacks
-	if (stack_a->size_a > 10)
-	{
-		split_stack(stack_a, min, max, median);
-		turkish_sort(stack_a);
-		turkish_sort(stack_b);
-		merge_stack(stack_a, stack_b);
-	}
-// 	if stack is below 10, we sort the stack
 	else
 	{
-		sort_stack(stack_a, min, max, median);
+		min = find_min(stack_a);
+		max = find_max(stack_a);
+		median = (min + max) / 2;
+		if (stack_a->size > 10)
+		{
+			split_stack(stack_a, median);
+			turkish_sort(stack_a, stack_b);
+			turkish_sort(stack_b, stack_a);
+			merge_stack(stack_a, stack_b);
+		}
+		else
+		{
+			ft_sort(stack_a, stack_b);
+		}
 	}
 }
 
-// sort the stack
-
-int	ft_sort(t_stack *stack_a, t_stack *stack_b)
-{
-	turkish_sort(stack_a, stack_b);
-	return (0);
-}
 
 

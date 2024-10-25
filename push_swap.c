@@ -6,7 +6,7 @@
 /*   By: cmassol <cmassol@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/17 15:59:57 by cmassol           #+#    #+#             */
-/*   Updated: 2024/10/25 16:16:38 by cmassol          ###   ########.fr       */
+/*   Updated: 2024/10/25 18:13:15 by cmassol          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,22 +25,22 @@
 // 10. instructions is an array of strings
 // 11. return 0 if everything is ok, 1 if there is an error
 
-int	init_stack(t_stack *stack, int ac, char **av)
+int	init_stack(t_stack *stack_a, int ac, char **av, t_stack *stack_b)
 {
 	int	i;
 
-	stack->size_a = ac - 1;
-	stack->size_b = 0;
-	stack->size_instructions = 0;
-	stack->a = malloc(sizeof(int) * stack->size_a);
-	stack->b = malloc(sizeof(int) * stack->size_a);
-	stack->instructions = malloc(sizeof(char *) * stack->size_a);
-	if (!stack->a || !stack->b || !stack->instructions)
+	stack_a->size = ac - 1;
+	stack_b->size = 0;
+	stack_a->size_instructions = 0;
+	stack_a->nb = malloc(sizeof(int) * stack_a->size);
+	stack_b->nb = malloc(sizeof(int) * stack_a->size);
+	stack_a->instructions = malloc(sizeof(char *) * stack_a->size);
+	if (!stack_a->nb || !stack_b->nb || !stack_a->instructions)
 		return (1);
 	i = 1;
-	while (i <= stack->size_a)
+	while (i <= stack_a->size)
 	{
-		stack->a[i] = ft_atoi(av[i]);
+		stack_a->nb[i] = ft_atoi(av[i]);
 		i++;
 	}
 	return (0);
@@ -48,10 +48,11 @@ int	init_stack(t_stack *stack, int ac, char **av)
 
 int	main(int ac, char **av)
 {
-	struct s_stack stack;
+	t_stack *stack_a;
+	t_stack *stack_b;
 
-	stack->a = NULL;
-	stack->b = NULL;
+	stack_a = NULL;
+	stack_b = NULL;
 	if (ac < 2)
 		return (1);
 	if (check_errors(ac, av))
@@ -59,14 +60,15 @@ int	main(int ac, char **av)
 		ft_printf("Error\n");
 		return (1);
 	}
-	if (init_stack(&stack, ac, av))
+	if (init_stack(stack_a, ac, av, stack_b))
 	{
 		ft_printf("Error\n");
 		return (1);
 	}
-	print_stacks(&stack);
-	ft_sort(&stack);
-	// exec_instructions(&a);
-	print_instructions(&stack);
+	print_stack(stack_a);
+	if (is_sorted(stack_a))
+		return (0);
+	turkish_sort(stack_a, stack_b);
+	print_instructions(stack_a);
 	return (0);
 }

@@ -5,7 +5,8 @@ HEADERS = /libft.h ft_printf.h push_swap.h
 SOURCES_LIBFT = sources_ft_printf/ft_printf.c sources_ft_printf/ft_putcharlen.c sources_ft_printf/ft_putnbrhexlen.c \
 		sources_ft_printf/ft_putnbrlen.c sources_ft_printf/ft_putptrlen.c sources_ft_printf/ft_putstrlen.c \
 		sources_libft/ft_strlen.c sources_libft/ft_atoi.c sources_libft/ft_itoa.c sources_libft/ft_isdigit.c \
-		sources_libft/ft_free.c sources_libft/ft_split.c sources_libft/ft_strcmp.c
+		sources_libft/ft_free.c sources_libft/ft_split.c sources_libft/ft_strcmp.c sources_libft/ft_strdup.c \
+		sources_libft/ft_strlcpy.c
 
 SOURCES_PRINTF = sources_ft_printf/ft_printf.c sources_ft_printf/ft_putcharlen.c sources_ft_printf/ft_putnbrhexlen.c \
 		sources_ft_printf/ft_putnbrlen.c sources_ft_printf/ft_putptrlen.c sources_ft_printf/ft_putstrlen.c
@@ -14,10 +15,11 @@ SOURCES_PUSH_SWAP = sources_push_swap/utils/check_errors.c sources_push_swap/ins
 					sources_push_swap/instructions/push.c sources_push_swap/instructions/rotate.c \
 					sources_push_swap/instructions/swap.c sources_push_swap/instructions/reverse.c \
 					sources_push_swap/algo/turkish.c sources_push_swap/algo/ft_sort.c \
+					sources_push_swap/algo/ft_sort_three.c sources_push_swap/utils/print_stack.c \
 
 PROGRAM = push_swap.c
 
-OBJECTS = $(SOURCES:.c=.o) $(SOURCES_PUSH_SWAP:.c=.o)
+OBJECTS = $(SOURCES_LIBFT:.c=.o) $(SOURCES_PRINTF:.c=.o) $(SOURCES_PUSH_SWAP:.c=.o)
 
 CFLAGS = -Werror -Wall -Wextra
 
@@ -60,11 +62,11 @@ all: push_swap.c
 
 clean:
 	$(RM) $(OBJECTS)
-	@echo "$(MAGENTA)Cleaned OBJECTS for ft_printf!$(DEF_COLOR)"
+	@echo "$(MAGENTA)CLEAN OBJECTS FOR :  $(OBJECTS) ! $(DEF_COLOR)"
 	
 fclean: clean
 	$(RM) $(NAME)
-	@echo "$(MAGENTA)Cleaned NAME for ft_printf!$(DEF_COLOR)"
+	@echo "$(MAGENTA)CLEAN NAME FOR :  $(OBJECTS) ! $(DEF_COLOR)"
 
 
 re: fclean all
