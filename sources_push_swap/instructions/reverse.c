@@ -6,9 +6,11 @@
 /*   By: cmassol <cmassol@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/25 11:52:43 by cmassol           #+#    #+#             */
-/*   Updated: 2024/10/25 12:04:07 by cmassol          ###   ########.fr       */
+/*   Updated: 2024/10/25 16:00:20 by cmassol          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
+
+#include "../../include/push_swap.h"
 
 void	rra(t_stack *stack)
 {

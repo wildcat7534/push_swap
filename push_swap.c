@@ -6,13 +6,13 @@
 /*   By: cmassol <cmassol@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/17 15:59:57 by cmassol           #+#    #+#             */
-/*   Updated: 2024/10/25 13:34:17 by cmassol          ###   ########.fr       */
+/*   Updated: 2024/10/25 16:16:38 by cmassol          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "push_swap.h"
+#include "include/push_swap.h"
 
-// init stack for turkish sort algorithm 
+// init stack for turkish sort algorithm
 // 1. create a stack a and stack b
 // 2. stack a is filled with the numbers from the arguments
 // 3. stack b is empty
@@ -46,13 +46,12 @@ int	init_stack(t_stack *stack, int ac, char **av)
 	return (0);
 }
 
-int main(int ac, char **av)
+int	main(int ac, char **av)
 {
-	t_stack	a;
-	t_stack	b;
+	struct s_stack stack;
 
-	t_stack->a = NULL;
-	t_stack->b = NULL;
+	stack->a = NULL;
+	stack->b = NULL;
 	if (ac < 2)
 		return (1);
 	if (check_errors(ac, av))
@@ -60,16 +59,14 @@ int main(int ac, char **av)
 		ft_printf("Error\n");
 		return (1);
 	}
-	if (init_stack(&a, ac, av))
+	if (init_stack(&stack, ac, av))
 	{
 		ft_printf("Error\n");
 		return (1);
 	}
-	print_stacks(&a);
-	// turkish_sort(&a, &b);
-	turkish_sort(&a);
-	ft_sort(&a);
+	print_stacks(&stack);
+	ft_sort(&stack);
 	// exec_instructions(&a);
-	print_instructions(&a);
+	print_instructions(&stack);
 	return (0);
 }

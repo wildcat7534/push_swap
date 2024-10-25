@@ -6,7 +6,7 @@
 /*   By: cmassol <cmassol@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/25 13:30:01 by cmassol           #+#    #+#             */
-/*   Updated: 2024/10/25 13:33:07 by cmassol          ###   ########.fr       */
+/*   Updated: 2024/10/25 16:16:14 by cmassol          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,6 +68,22 @@ int	is_rev_median(t_stack *stack, int median)
 	}
 	return (0);
 }
+void	find_min_max_median(t_stack *stack, int *min, int *max, int *median)
+{
+	int	i;
+
+	i = 0;
+	while (i < stack->size_a)
+	{
+		if (stack->a[i] < *min)
+			*min = stack->a[i];
+		if (stack->a[i] > *max)
+			*max = stack->a[i];
+		i++;
+	}
+	*median = (*min + *max) / 2;
+}
+
 int	is_max(t_stack *stack, int max)
 {
 	int	i;

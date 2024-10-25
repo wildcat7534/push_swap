@@ -6,7 +6,7 @@
 /*   By: cmassol <cmassol@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/17 16:08:18 by cmassol           #+#    #+#             */
-/*   Updated: 2024/10/25 13:33:06 by cmassol          ###   ########.fr       */
+/*   Updated: 2024/10/25 16:10:24 by cmassol          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,6 +55,7 @@ int		is_max(t_stack *stack, int max);
 int		is_min(t_stack *stack, int min);
 int		is_rev_max(t_stack *stack, int max);
 int		is_rev_min(t_stack *stack, int min);
-int		turkish_sort(t_stack *stack);
+void	turkish_sort(t_stack *stack_a);
+int		ft_sort(t_stack *stack);
 
 #endif
