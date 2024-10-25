@@ -6,7 +6,7 @@
 /*   By: cmassol <cmassol@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/17 15:59:57 by cmassol           #+#    #+#             */
-/*   Updated: 2024/10/25 19:55:06 by cmassol          ###   ########.fr       */
+/*   Updated: 2024/10/25 20:12:31 by cmassol          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -81,7 +81,7 @@ int	main(int ac, char **av)
 	}
 	ft_printf("stack_a->size = %d\n", stack_a->size);
 	print_stack(stack_a, stack_b);
-	if (is_sorted(stack_a))
+	if (is_sorted(&stack_a))
 		return (0);
 	turkish_sort(&stack_a, &stack_b);
 	print_instructions(stack_a);

@@ -6,42 +6,48 @@
 /*   By: cmassol <cmassol@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/25 16:17:20 by cmassol           #+#    #+#             */
-/*   Updated: 2024/10/25 19:46:34 by cmassol          ###   ########.fr       */
+/*   Updated: 2024/10/25 20:52:25 by cmassol          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../include/push_swap.h"
 
-void	ft_sort_three(t_stack **stack)
+void	ft_sort_three(t_stack **stack_a)
 {
 	int	min;
 	int	max;
-	int	median;
 
-	if ((*stack)->size == 2)
+	min = find_min(*stack_a);
+	max = find_max(*stack_a);
+	if (is_sorted(stack_a))
+		return ;
+	if ((*stack_a)->nb[0] == max && (*stack_a)->nb[1] == min)
 	{
-		sa(stack);
-		add_instruction(*stack, "sa");
+		sa(stack_a);
+		add_instruction(*stack_a, "sa");
 	}
-	else if ((*stack)->size == 3)
+	else if ((*stack_a)->nb[0] == min && (*stack_a)->nb[1] == max)
 	{
-		min = (*stack)->nb[0];
-		max = (*stack)->nb[0];
-		find_min_max_median(*stack, &min, &max, &median);
-		if ((*stack)->nb[0] == max)
-		{
-			ra(*stack);
-			add_instruction(*stack, "ra");
-		}
-		if ((*stack)->nb[1] == max)
-		{
-			rra(stack);
-			add_instruction(*stack, "rra");
-		}
-		if ((*stack)->nb[0] > (*stack)->nb[1])
-		{
-			sa(stack);
-			add_instruction(*stack, "sa");
-		}
+		ra(stack_a);
+		add_instruction(*stack_a, "ra");
+	}
+	else if ((*stack_a)->nb[0] == max && (*stack_a)->nb[2] == min)
+	{
+		rra(stack_a);
+		add_instruction(*stack_a, "rra");
+	}
+	else if ((*stack_a)->nb[0] == min && (*stack_a)->nb[2] == max)
+	{
+		sa(stack_a);
+		add_instruction(*stack_a, "sa");
+		ra(stack_a);
+		add_instruction(*stack_a, "ra");
+	}
+	else if ((*stack_a)->nb[1] == max && (*stack_a)->nb[2] == min)
+	{
+		ra(stack_a);
+		add_instruction(*stack_a, "ra");
+		sa(stack_a);
+		add_instruction(*stack_a, "sa");
 	}
 }

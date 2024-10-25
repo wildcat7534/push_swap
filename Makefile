@@ -16,6 +16,7 @@ SOURCES_PUSH_SWAP = sources_push_swap/utils/check_errors.c sources_push_swap/ins
 					sources_push_swap/instructions/swap.c sources_push_swap/instructions/reverse.c \
 					sources_push_swap/algo/turkish.c sources_push_swap/algo/ft_sort.c \
 					sources_push_swap/algo/ft_sort_three.c sources_push_swap/utils/print_stack.c \
+					sources_push_swap/algo/ft_sort_10.c sources_push_swap/algo/tools.c \
 
 PROGRAM = push_swap.c
 

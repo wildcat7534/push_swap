@@ -6,54 +6,55 @@
 /*   By: cmassol <cmassol@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/25 11:50:52 by cmassol           #+#    #+#             */
-/*   Updated: 2024/10/25 18:07:24 by cmassol          ###   ########.fr       */
+/*   Updated: 2024/10/25 20:38:55 by cmassol          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../include/push_swap.h"
 
-void	pa(t_stack *stack)
+// push the top element of stack b to stack a
+void	pa(t_stack **stack_a, t_stack **stack_b)
 {
 	int	i;
 
-	if (stack->size == 0)
+	if ((*stack_b)->size == 0)
 		return ;
-	i = stack->size;
+	i = (*stack_a)->size;
 	while (i > 0)
 	{
-		stack->nb[i] = stack->nb[i - 1];
+		(*stack_a)->nb[i] = (*stack_a)->nb[i - 1];
 		i--;
 	}
-	stack->nb[0] = stack->nb[0];
+	(*stack_a)->nb[0] = (*stack_b)->nb[0];
 	i = 0;
-	while (i < stack->size - 1)
+	while (i < (*stack_b)->size - 1)
 	{
-		stack->nb[i] = stack->nb[i + 1];
+		(*stack_b)->nb[i] = (*stack_b)->nb[i + 1];
 		i++;
 	}
-	stack->size++;
-	stack->size--;
+	(*stack_a)->size++;
+	(*stack_b)->size--;
 }
-
-void	pb(t_stack *stack)
+// push the top element of stack a to stack b
+void	pb(t_stack **stack_a, t_stack **stack_b)
 {
-	int i;
+	int	i;
 
-	if (stack->size == 0)
+	if ((*stack_a)->size == 0)
 		return ;
-	i = stack->size;
+	i = (*stack_b)->size;
 	while (i > 0)
 	{
-		stack->nb[i] = stack->nb[i - 1];
+		(*stack_b)->nb[i] = (*stack_b)->nb[i - 1];
 		i--;
 	}
-	stack->nb[0] = stack->nb[0];
+	(*stack_b)->nb[0] = (*stack_a)->nb[0];
 	i = 0;
-	while (i < stack->size - 1)
+	while (i < (*stack_a)->size - 1)
 	{
-		stack->nb[i] = stack->nb[i + 1];
+		(*stack_a)->nb[i] = (*stack_a)->nb[i + 1];
 		i++;
 	}
-	stack->size++;
-	stack->size--;
+	(*stack_b)->size++;
+	(*stack_a)->size--;
 }

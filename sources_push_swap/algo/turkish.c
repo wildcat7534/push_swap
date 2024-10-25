@@ -6,7 +6,7 @@
 /*   By: cmassol <cmassol@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/25 13:27:28 by cmassol           #+#    #+#             */
-/*   Updated: 2024/10/25 19:54:23 by cmassol          ###   ########.fr       */
+/*   Updated: 2024/10/25 20:47:18 by cmassol          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,73 +22,40 @@
 
 // split stack
 
-void	split_stack(t_stack *stack_a, int median)
+void	split_stack(t_stack **stack_a, int median, t_stack **stack_b)
 {
 	int	i;
 
 	i = 0;
-	while (i < stack_a->size)
+	while (i < (*stack_a)->size)
 	{
-		if (stack_a->nb[i] < median)
+		if ((*stack_a)->nb[0] < median)
 		{
-			pb(stack_a);
-			add_instruction(stack_a, "pb");
+			pb(stack_a, stack_b);
+			add_instruction(*stack_a, "pb");
 		}
 		else
 		{
 			ra(stack_a);
-			add_instruction(stack_a, "ra");
+			add_instruction(*stack_a, "ra");
 		}
 	}
 }
-
-int	find_min(t_stack *stack)
-{
-	int	i;
-	int	min;
-
-	i = 0;
-	min = stack->nb[0];
-	while (i < stack->size)
-	{
-		if (stack->nb[i] < min)
-			min = stack->nb[i];
-		i++;
-	}
-	return (min);
-}
-int	find_max(t_stack *stack)
-{
-	int	i;
-	int	max;
-
-	i = 0;
-	max = stack->nb[0];
-	while (i < stack->size)
-	{
-		if (stack->nb[i] > max)
-			max = stack->nb[i];
-		i++;
-	}
-	return (max);
-}
-
 // merge stack
 
-void	merge_stack(t_stack *stack_a, t_stack *stack_b)
+void	merge_stack(t_stack **stack_a, t_stack **stack_b)
 {
 	int	i;
 
 	i = 0;
-	while (i < stack_b->size)
+	while (i < (*stack_b)->size)
 	{
-		pa(stack_a);
-		add_instruction(stack_a, "pa");
+		pa(stack_a, stack_b);
+		add_instruction(*stack_a, "pa");
 		i++;
 	}
 }
-
-
+	
 // turkish sort algorithm
 
 void	turkish_sort(t_stack **stack_a, t_stack **stack_b)
@@ -111,18 +78,18 @@ void	turkish_sort(t_stack **stack_a, t_stack **stack_b)
 		min = find_min(*stack_a);
 		max = find_max(*stack_a);
 		median = (min + max) / 2;
-		if (is_sorted(*stack_a))
+		if (is_sorted(stack_a))
 			return ;
 		if ((*stack_a)->size > 10)
 		{
-			split_stack(*stack_a, median);
+			split_stack(stack_a, median, stack_b);
 			turkish_sort(stack_a, stack_b);
 			turkish_sort(stack_b, stack_a);
-			merge_stack(*stack_a, *stack_b);
+			merge_stack(stack_a, stack_b);
 		}
 		else
 		{
-			ft_sort(*stack_a, *stack_b);
+			ft_sort_10(stack_a, stack_b);
 		}
 	}
 }
