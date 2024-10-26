@@ -6,7 +6,7 @@
 /*   By: cmassol <cmassol@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/31 16:38:02 by cmassol           #+#    #+#             */
-/*   Updated: 2024/10/25 17:35:40 by cmassol          ###   ########.fr       */
+/*   Updated: 2024/10/26 12:45:19 by cmassol          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,7 +43,7 @@ static	size_t	ft_nb_words(char const *s, char c)
 	return (nb);
 }
 
-static void *ft_free_split(char **s, size_t i)
+static void	*ft_free_split(char **s, size_t i)
 {
 	while (i > 0)
 	{

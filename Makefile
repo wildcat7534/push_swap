@@ -6,7 +6,7 @@ SOURCES_LIBFT = sources_ft_printf/ft_printf.c sources_ft_printf/ft_putcharlen.c 
 		sources_ft_printf/ft_putnbrlen.c sources_ft_printf/ft_putptrlen.c sources_ft_printf/ft_putstrlen.c \
 		sources_libft/ft_strlen.c sources_libft/ft_atoi.c sources_libft/ft_itoa.c sources_libft/ft_isdigit.c \
 		sources_libft/ft_free.c sources_libft/ft_split.c sources_libft/ft_strcmp.c sources_libft/ft_strdup.c \
-		sources_libft/ft_strlcpy.c
+		sources_libft/ft_strlcpy.c sources_libft/ft_substr.c
 
 SOURCES_PRINTF = sources_ft_printf/ft_printf.c sources_ft_printf/ft_putcharlen.c sources_ft_printf/ft_putnbrhexlen.c \
 		sources_ft_printf/ft_putnbrlen.c sources_ft_printf/ft_putptrlen.c sources_ft_printf/ft_putstrlen.c
@@ -19,6 +19,12 @@ SOURCES_PUSH_SWAP = sources_push_swap/utils/check_errors.c sources_push_swap/ins
 					sources_push_swap/algo/ft_sort_10.c sources_push_swap/algo/tools.c \
 
 PROGRAM = push_swap.c
+
+PROGRAMME_OUT = push_swap
+
+ARGS = 1 5 8 3 4 9
+
+INFO = libft printf push_swap
 
 OBJECTS = $(SOURCES_LIBFT:.c=.o) $(SOURCES_PRINTF:.c=.o) $(SOURCES_PUSH_SWAP:.c=.o)
 
@@ -48,18 +54,26 @@ all: $(NAME)
 	$(CC) $(CFLAGS) -c $< -o $@
 
 $(NAME): $(OBJECTS)
+	@echo "              $(YELLOW) **** >>>>> Compiling: $(INFO) <<<<< **** $(DEF_COLOR)"
 	$(AR) $@ $^
-	@echo "$(YELLOW) **** >>>>> Compiling: $< <<<<< **** $(DEF_COLOR)"
 	@echo ""
-	@echo "$(MAGENTA)>>>>> ft_printf compiled!$(DEF_COLOR)"
+	@echo ""
+	@echo "$(MAGENTA)>>>>> $(INFO) compiled!$(DEF_COLOR)"
 
 all: push_swap.c
+	@echo ""
 	@echo "$(GREEN)          () ()$(DEF_COLOR)"
 	@echo "$(GREEN)          (>.<) $(DEF_COLOR)"
 	@echo "$(GREEN)          ( . ) $(DEF_COLOR)"
 	@echo "$(GREEN)           n_n $(DEF_COLOR)"
-	$(CC) $(CFLAGS) $(PROGRAM) $(NAME) -o push_swap
-	@echo "$(MAGENTA)>>>>> push_swap compiled!$(DEF_COLOR)"
+	$(CC) $(CFLAGS) $(PROGRAM) $(NAME) -o $(PROGRAMME_OUT)
+	@echo ""
+	@echo "$(MAGENTA)>>>>> Programme : $(PROGRAMME_OUT) compiled!$(DEF_COLOR)"
+	@echo ""
+#	@echo "$(CYAN)>>>>> Launching $(PROGRAMME_OUT) with arguments : $(ARGS)$(DEF_COLOR)"
+	@echo ""
+#	./$(PROGRAMME_OUT) $(ARGS)
+
 
 clean:
 	$(RM) $(OBJECTS)

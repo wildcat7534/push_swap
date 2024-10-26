@@ -6,7 +6,7 @@
 /*   By: cmassol <cmassol@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/25 20:25:07 by cmassol           #+#    #+#             */
-/*   Updated: 2024/10/25 23:08:03 by cmassol          ###   ########.fr       */
+/*   Updated: 2024/10/26 12:36:54 by cmassol          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,7 +34,7 @@ int	find_min(t_stack *stack)
 			min = stack->nb[i];
 		i++;
 	}
-	ft_printf("min = %d\n", min);
+	//ft_printf("min = %d\n", min);
 	return (min);
 }
 int	find_max(t_stack *stack)
@@ -50,6 +50,6 @@ int	find_max(t_stack *stack)
 			max = stack->nb[i];
 		i++;
 	}
-	ft_printf("max = %d\n", max);
+	//ft_printf("max = %d\n", max);
 	return (max);
 }
