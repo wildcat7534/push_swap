@@ -6,7 +6,7 @@
 /*   By: cmassol <cmassol@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/17 15:59:57 by cmassol           #+#    #+#             */
-/*   Updated: 2024/10/27 16:22:41 by cmassol          ###   ########.fr       */
+/*   Updated: 2024/10/27 17:10:00 by cmassol          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,15 +35,11 @@ int	parse_arguments(int ac, char **av, int **numbers)
 
 	count = 0;
 	i = 1;
-	// Allocation mémoire maximale (ac - 1)
-	//*10 pour couvrir les cas de chaînes multiples
 	result = malloc(sizeof(int) * (ac - 1) * ft_nb_words(av[1], ' '));
-	// Approximatif mais évite des reallocations répétées
 	if (!result)
 		return (-1);
 	while (i < ac)
 	{
-		// Découper l'argument actuel si nécessaire
 		split = ft_split(av[i], ' ');
 		if (!split)
 		{
@@ -54,23 +50,15 @@ int	parse_arguments(int ac, char **av, int **numbers)
 		while (split[j])
 		{
 			if (!is_number(split[j]))
-			{
-				free(result);
-				ft_free_split(split);
-				return (-1); // Valeur non numérique détectée
-			}
+				return (free(result), ft_free_split(split), -1);
 			result[count++] = ft_atoi(split[j]);
 			j++;
 		}
 		ft_free_split(split);
 		i++;
 	}
-	// Vérification des doublons après parsing complet
 	if (has_duplicates(result, count))
-	{
-		return (free(result), - 1);
-	}
-	// Assigner les nombres trouvés à numbers et retourner la taille
+		return (free(result), -1);
 	*numbers = result;
 	return (count);
 }
@@ -80,9 +68,8 @@ int	init_stack(t_stack **stack_a, int ac, char **av, t_stack **stack_b)
 	int	total_numbers;
 
 	total_numbers = parse_arguments(ac, av, &numbers);
-	// Obtenir tous les nombres
 	if (total_numbers == -1)
-		return (1); // Erreur dans les arguments
+		return (1);
 	*stack_a = malloc(sizeof(t_stack));
 	if (!*stack_a)
 		return (1);
@@ -113,8 +100,6 @@ int	main(int ac, char **av)
 	}
 	if (check_errors(ac, av))
 	{
-		// ft_printf("Error basique\n");
-		// write in error stdout
 		write(2, "Error\n", 6);
 		return (1);
 	}
@@ -135,11 +120,6 @@ int	main(int ac, char **av)
 	ft_sort(&stack_a, &stack_b);
 	print_stack(stack_a, stack_b);
 	print_nb_instructions(&stack_a);
-	//taille de la stack 
 	ft_printf("stack_a->size = %d\n", stack_a->size);
-	free(stack_a->nb);
-	free(stack_a);
-	free(stack_b->nb);
-	free(stack_b);
-	return (0);
+	return (free(stack_a->nb), free(stack_a), free(stack_b->nb), free(stack_b), 0);
 }
