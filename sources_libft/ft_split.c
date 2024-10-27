@@ -6,7 +6,7 @@
 /*   By: cmassol <cmassol@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/31 16:38:02 by cmassol           #+#    #+#             */
-/*   Updated: 2024/10/26 12:45:19 by cmassol          ###   ########.fr       */
+/*   Updated: 2024/10/27 16:14:11 by cmassol          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,27 +20,6 @@ static	size_t	ft_word_len(char const *s, char c)
 	while (s[i] && s[i] != c)
 		i++;
 	return (i);
-}
-
-static	size_t	ft_nb_words(char const *s, char c)
-{
-	size_t	i;
-	size_t	nb;
-
-	i = 0;
-	nb = 0;
-	while (s[i])
-	{
-		if (s[i] != c)
-		{
-			nb++;
-			while (s[i] && s[i] != c)
-				i++;
-		}
-		else
-			i++;
-	}
-	return (nb);
 }
 
 static void	*ft_free_split(char **s, size_t i)

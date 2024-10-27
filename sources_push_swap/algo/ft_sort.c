@@ -6,7 +6,7 @@
 /*   By: cmassol <cmassol@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/25 13:30:01 by cmassol           #+#    #+#             */
-/*   Updated: 2024/10/25 23:04:10 by cmassol          ###   ########.fr       */
+/*   Updated: 2024/10/27 15:51:53 by cmassol          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,6 +26,7 @@ void	ft_sort(t_stack **stack_a, t_stack **stack_b)
 	}
 	else if ((*stack_a)->size == 3)
 	{
+		ft_printf("ft_sort_three\n");
 		ft_sort_three(stack_a);
 	}
 	else
@@ -35,12 +36,12 @@ void	ft_sort(t_stack **stack_a, t_stack **stack_b)
 		find_min_max_median(*stack_a, &min, &max, &median);
 		if ((*stack_a)->size > 10)
 		{
-			split_stack(stack_a, median, stack_b);
-			ft_sort(stack_a, stack_b);
-			ft_sort(stack_b, stack_a);
+			ft_printf("turkish_sort\n");
+			recursive_turkish_sort(stack_a, stack_b);
 		}
 		else
 		{
+			ft_printf("ft_sort_10\n");
 			ft_sort_10(stack_a, stack_b);
 		}
 	}
@@ -48,11 +49,9 @@ void	ft_sort(t_stack **stack_a, t_stack **stack_b)
 // just sort the stack a for ten or less elements
 // algorithm: sort the stack a
 
-
-
-int is_sorted(t_stack * *stack)
+int	is_sorted(t_stack **stack)
 {
-	int i;
+	int	i;
 
 	i = 0;
 	while (i < (*stack)->size - 1)
@@ -63,9 +62,9 @@ int is_sorted(t_stack * *stack)
 	}
 	return (1);
 }
-int is_rev_sorted(t_stack * stack)
+int	is_rev_sorted(t_stack *stack)
 {
-	int i;
+	int	i;
 
 	i = 0;
 	while (i < stack->size - 1)
@@ -76,9 +75,9 @@ int is_rev_sorted(t_stack * stack)
 	}
 	return (1);
 }
-int is_median(t_stack * stack, int median)
+int	is_median(t_stack *stack, int median)
 {
-	int i;
+	int	i;
 
 	i = 0;
 	while (i < stack->size)
@@ -89,9 +88,9 @@ int is_median(t_stack * stack, int median)
 	}
 	return (0);
 }
-int is_rev_median(t_stack * stack, int median)
+int	is_rev_median(t_stack *stack, int median)
 {
-	int i;
+	int	i;
 
 	i = 0;
 	while (i < stack->size)
@@ -102,9 +101,9 @@ int is_rev_median(t_stack * stack, int median)
 	}
 	return (0);
 }
-void find_min_max_median(t_stack * stack, int *min, int *max, int *median)
+void	find_min_max_median(t_stack *stack, int *min, int *max, int *median)
 {
-	int i;
+	int	i;
 
 	i = 0;
 	while (i < stack->size)
@@ -118,9 +117,9 @@ void find_min_max_median(t_stack * stack, int *min, int *max, int *median)
 	*median = (*min + *max) / 2;
 }
 
-int is_max(t_stack * stack, int max)
+int	is_max(t_stack *stack, int max)
 {
-	int i;
+	int	i;
 
 	i = 0;
 	while (i < stack->size)
@@ -131,9 +130,9 @@ int is_max(t_stack * stack, int max)
 	}
 	return (0);
 }
-int is_min(t_stack *stack, int min)
+int	is_min(t_stack *stack, int min)
 {
-	int i;
+	int	i;
 
 	i = 0;
 	while (i < stack->size)
@@ -144,9 +143,9 @@ int is_min(t_stack *stack, int min)
 	}
 	return (0);
 }
-int is_rev_max(t_stack * stack, int max)
+int	is_rev_max(t_stack *stack, int max)
 {
-	int i;
+	int	i;
 
 	i = 0;
 	while (i < stack->size)
@@ -157,9 +156,9 @@ int is_rev_max(t_stack * stack, int max)
 	}
 	return (0);
 }
-int is_rev_min(t_stack * stack, int min)
+int	is_rev_min(t_stack *stack, int min)
 {
-	int i;
+	int	i;
 
 	i = 0;
 	while (i < stack->size)

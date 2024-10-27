@@ -6,16 +6,13 @@
 /*   By: cmassol <cmassol@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/17 18:19:57 by cmassol           #+#    #+#             */
-/*   Updated: 2024/10/26 11:32:40 by cmassol          ###   ########.fr       */
+/*   Updated: 2024/10/27 12:51:31 by cmassol          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../include/push_swap.h"
 
-void	print_nb_instructions(t_stack **stack)
-{
-	ft_printf("nb_instructions = %d\n", (*stack)->size_instructions);
-}
+
 /*
 void	add_instruction(t_stack **stack, char *instruction)
 {

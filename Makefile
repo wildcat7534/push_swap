@@ -6,7 +6,7 @@ SOURCES_LIBFT = sources_ft_printf/ft_printf.c sources_ft_printf/ft_putcharlen.c 
 		sources_ft_printf/ft_putnbrlen.c sources_ft_printf/ft_putptrlen.c sources_ft_printf/ft_putstrlen.c \
 		sources_libft/ft_strlen.c sources_libft/ft_atoi.c sources_libft/ft_itoa.c sources_libft/ft_isdigit.c \
 		sources_libft/ft_free.c sources_libft/ft_split.c sources_libft/ft_strcmp.c sources_libft/ft_strdup.c \
-		sources_libft/ft_strlcpy.c sources_libft/ft_substr.c
+		sources_libft/ft_strlcpy.c sources_libft/ft_substr.c sources_libft/ft_nb_words.c
 
 SOURCES_PRINTF = sources_ft_printf/ft_printf.c sources_ft_printf/ft_putcharlen.c sources_ft_printf/ft_putnbrhexlen.c \
 		sources_ft_printf/ft_putnbrlen.c sources_ft_printf/ft_putptrlen.c sources_ft_printf/ft_putstrlen.c

@@ -6,7 +6,7 @@
 /*   By: cmassol <cmassol@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/17 16:10:04 by cmassol           #+#    #+#             */
-/*   Updated: 2024/10/26 12:45:19 by cmassol          ###   ########.fr       */
+/*   Updated: 2024/10/27 16:07:29 by cmassol          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,15 +32,24 @@ int	is_number(char *str)
 }
 int	has_duplicates(int *array, int size)
 {
-	int i, j;
+	int i;
+	int j;
+
+	i = 0;
 	// Comparer chaque élément avec tous les autres
-	for (i = 0; i < size - 1; i++)
+	while (i < size - 1)
 	{
-		for (j = i + 1; j < size; j++)
+		j = i + 1;
+		while (j < size)
 		{
 			if (array[i] == array[j])
+			{
+				ft_printf("DOUBLON !: %i\n", array[i]); //TODO: to erase
 				return (1); // Doublon trouvé
+			}
+			j++;
 		}
+		i++;
 	}
 	return (0); // Pas de doublons
 }

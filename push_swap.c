@@ -6,7 +6,7 @@
 /*   By: cmassol <cmassol@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/17 15:59:57 by cmassol           #+#    #+#             */
-/*   Updated: 2024/10/26 13:14:59 by cmassol          ###   ########.fr       */
+/*   Updated: 2024/10/27 16:22:41 by cmassol          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,8 +36,8 @@ int	parse_arguments(int ac, char **av, int **numbers)
 	count = 0;
 	i = 1;
 	// Allocation mémoire maximale (ac - 1)
-	//*10 pour couvrir les cas de chaînes multiples 
-	result = malloc(sizeof(int) * (ac - 1) * 10);
+	//*10 pour couvrir les cas de chaînes multiples
+	result = malloc(sizeof(int) * (ac - 1) * ft_nb_words(av[1], ' '));
 	// Approximatif mais évite des reallocations répétées
 	if (!result)
 		return (-1);
@@ -68,8 +68,7 @@ int	parse_arguments(int ac, char **av, int **numbers)
 	// Vérification des doublons après parsing complet
 	if (has_duplicates(result, count))
 	{
-		free(result);
-		return (-1);
+		return (free(result), - 1);
 	}
 	// Assigner les nombres trouvés à numbers et retourner la taille
 	*numbers = result;
@@ -79,7 +78,7 @@ int	init_stack(t_stack **stack_a, int ac, char **av, t_stack **stack_b)
 {
 	int	*numbers;
 	int	total_numbers;
-	
+
 	total_numbers = parse_arguments(ac, av, &numbers);
 	// Obtenir tous les nombres
 	if (total_numbers == -1)
@@ -114,27 +113,30 @@ int	main(int ac, char **av)
 	}
 	if (check_errors(ac, av))
 	{
-		//ft_printf("Error basique\n");
+		// ft_printf("Error basique\n");
 		// write in error stdout
 		write(2, "Error\n", 6);
 		return (1);
 	}
 	if (init_stack(&stack_a, ac, av, &stack_b))
 	{
-		//ft_printf("Error init stack\n");
+		// ft_printf("Error init stack\n");
 		write(2, "Error\n", 6);
 		return (1);
 	}
-	//ft_printf("stack_a->size = %d\n", stack_a->size);
-	//print_stack(stack_a, stack_b);
+	// ft_printf("stack_a->size = %d\n", stack_a->size);
+	// print_stack(stack_a, stack_b);
 	if (is_sorted(&stack_a))
 	{
 		write(2, "Error\n", 6);
 		return (0);
 	}
-	turkish_sort(&stack_a, &stack_b);
-	//print_stack(stack_a, stack_b);
-	//print_nb_instructions(&stack_a);
+	print_stack(stack_a, stack_b);
+	ft_sort(&stack_a, &stack_b);
+	print_stack(stack_a, stack_b);
+	print_nb_instructions(&stack_a);
+	//taille de la stack 
+	ft_printf("stack_a->size = %d\n", stack_a->size);
 	free(stack_a->nb);
 	free(stack_a);
 	free(stack_b->nb);
