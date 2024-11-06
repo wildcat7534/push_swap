@@ -6,17 +6,19 @@ SOURCES_LIBFT = sources_ft_printf/ft_printf.c sources_ft_printf/ft_putcharlen.c 
 		sources_ft_printf/ft_putnbrlen.c sources_ft_printf/ft_putptrlen.c sources_ft_printf/ft_putstrlen.c \
 		sources_libft/ft_strlen.c sources_libft/ft_atoi.c sources_libft/ft_itoa.c sources_libft/ft_isdigit.c \
 		sources_libft/ft_free.c sources_libft/ft_split.c sources_libft/ft_strcmp.c sources_libft/ft_strdup.c \
-		sources_libft/ft_strlcpy.c sources_libft/ft_substr.c sources_libft/ft_nb_words.c
+		sources_libft/ft_strlcpy.c sources_libft/ft_substr.c sources_libft/ft_nb_words.c sources_libft/ft_atol.c\
+		sources_libft/ft_isstrnum.c
 
 SOURCES_PRINTF = sources_ft_printf/ft_printf.c sources_ft_printf/ft_putcharlen.c sources_ft_printf/ft_putnbrhexlen.c \
 		sources_ft_printf/ft_putnbrlen.c sources_ft_printf/ft_putptrlen.c sources_ft_printf/ft_putstrlen.c
 
-SOURCES_PUSH_SWAP = sources_push_swap/utils/check_errors.c sources_push_swap/instructions/instructions.c \
-					sources_push_swap/instructions/push.c sources_push_swap/instructions/rotate.c \
-					sources_push_swap/instructions/swap.c sources_push_swap/instructions/reverse.c \
-					sources_push_swap/algo/turkish.c sources_push_swap/algo/ft_sort.c \
-					sources_push_swap/algo/ft_sort_three.c sources_push_swap/utils/print_stack.c \
-					sources_push_swap/algo/ft_sort_10.c sources_push_swap/algo/tools.c \
+SOURCES_PUSH_SWAP = sources_push_swap/utils/check_errors.c \
+					sources_push_swap/utils/print_stack.c sources_push_swap/utils/tools.c \
+					sources_push_swap/instructions/rotate.c sources_push_swap/instructions/push.c \
+					sources_push_swap/instructions/rev_rotate.c sources_push_swap/instructions/swap.c \
+					sources_push_swap/algo/ft_sort_three_node.c sources_push_swap/algo/ft_sort_10_node.c \
+					sources_push_swap/algo/ft_index_sort.c sources_push_swap/utils/ft_make_node.c\
+					sources_push_swap/utils/ft_free_mem.c
 
 PROGRAM = push_swap.c
 
@@ -70,10 +72,7 @@ all: push_swap.c
 	@echo ""
 	@echo "$(MAGENTA)>>>>> Programme : $(PROGRAMME_OUT) compiled!$(DEF_COLOR)"
 	@echo ""
-#	@echo "$(CYAN)>>>>> Launching $(PROGRAMME_OUT) with arguments : $(ARGS)$(DEF_COLOR)"
 	@echo ""
-#	./$(PROGRAMME_OUT) $(ARGS)
-
 
 clean:
 	$(RM) $(OBJECTS)
@@ -82,7 +81,6 @@ clean:
 fclean: clean
 	$(RM) $(NAME)
 	@echo "$(MAGENTA)CLEAN NAME FOR :  $(OBJECTS) ! $(DEF_COLOR)"
-
 
 re: fclean all
 

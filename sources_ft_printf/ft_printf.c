@@ -6,14 +6,14 @@
 /*   By: cmassol <cmassol@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/06 19:17:38 by cmassol           #+#    #+#             */
-/*   Updated: 2024/08/27 20:52:27 by cmassol          ###   ########.fr       */
+/*   Updated: 2024/11/06 04:11:15 by cmassol          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/ft_printf.h"
 #include <stdarg.h>
 
-int	ft_printf(const char *format, ...);
+int		ft_printf(const char *format, ...);
 
 char	ft_strfindchr(const char *str, int c)
 {
@@ -22,7 +22,7 @@ char	ft_strfindchr(const char *str, int c)
 	i = 0;
 	while (str[i])
 	{
-		if (str[i] == (char) c)
+		if (str[i] == (char)c)
 			return (str[i]);
 		i++;
 	}
@@ -57,6 +57,11 @@ void	ft_selectargs(char argfind, va_list args, int *totalchar)
 		ft_putcharlen('%', totalchar);
 }
 
+void	ft_selectargs2(va_list args, int *totalchar)
+{
+	ft_putnbrlen(va_arg(args, long), totalchar);
+}
+
 int	ft_printf(const char *format, ...)
 {
 	va_list	args;
@@ -69,11 +74,14 @@ int	ft_printf(const char *format, ...)
 	va_start(args, format);
 	while (format < (format + ft_strlen(format)))
 	{
-		if ((char) *format == '%')
+		if ((char)*format == '%')
 		{
 			format++;
 			argfind = ft_strfindchr("cspdiuxX%", (char) *format);
-			ft_selectargs(argfind, args, &totalchar);
+			if (argfind != '\0')
+				ft_selectargs(argfind, args, &totalchar);
+			else if ((char) *format == 'l')
+				ft_selectargs2(args, &totalchar);
 		}
 		else
 			ft_putcharlen(*format, &totalchar);

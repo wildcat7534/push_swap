@@ -6,7 +6,7 @@
 /*   By: cmassol <cmassol@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/28 14:14:29 by cmassol           #+#    #+#             */
-/*   Updated: 2024/08/01 11:24:10 by cmassol          ###   ########.fr       */
+/*   Updated: 2024/11/05 21:59:44 by cmassol          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,8 +14,8 @@
 
 int	ft_atoi(const char *str)
 {
-	int		neg;
-	int		res;
+	int	neg;
+	int	res;
 
 	neg = 1;
 	res = 0;
@@ -31,5 +31,5 @@ int	ft_atoi(const char *str)
 		res = res * 10 + *str - '0';
 		str++;
 	}
-	return (res * neg);
+	return ((int)(res * neg));
 }

@@ -5,43 +5,44 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: cmassol <cmassol@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/10/25 11:50:12 by cmassol           #+#    #+#             */
-/*   Updated: 2024/10/25 22:58:15 by cmassol          ###   ########.fr       */
+/*   Created: 2024/11/01 22:41:04 by cmassol           #+#    #+#             */
+/*   Updated: 2024/11/06 04:04:54 by cmassol          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../include/push_swap.h"
 
-void	sa(t_stack **stack)
+static void	swap(t_node	**stack)
 {
-	int	tmp;
+	t_node	*first;
+	t_node	*second;
 
-	if ((*stack)->size < 2)
+	first = *stack;
+	second = first->next;
+	first->next = second->next;
+	second->next = first;
+	*stack = second;
+}
+
+void	sa(t_node **stack)
+{
+	if (!*stack || !(*stack)->next)
 		return ;
-	tmp = (*stack)->nb[0];
-	(*stack)->nb[0] = (*stack)->nb[1];
-	(*stack)->nb[1] = tmp;
-	(*stack)->size_instructions++;
+	swap(stack);
 	ft_printf("sa\n");
 }
 
-void	sb(t_stack **stack)
+void	sb(t_node **stack)
 {
-	int	tmp;
-
-	if ((*stack)->size < 2)
+	if (!*stack || !(*stack)->next)
 		return ;
-	tmp = (*stack)->nb[0];
-	(*stack)->nb[0] = (*stack)->nb[1];
-	(*stack)->nb[1] = tmp;
-	(*stack)->size_instructions++;
+	swap(stack);
 	ft_printf("sb\n");
 }
 
-void	ss(t_stack **stack_a, t_stack **stack_b)
+void	ss(t_node **stack_a, t_node **stack_b)
 {
 	sa(stack_a);
 	sb(stack_b);
-	(*stack_a)->size_instructions++;
 	ft_printf("ss\n");
 }

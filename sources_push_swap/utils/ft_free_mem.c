@@ -1,23 +1,38 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_strcmp.c                                        :+:      :+:    :+:   */
+/*   ft_free_mem.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: cmassol <cmassol@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/10/25 15:56:53 by cmassol           #+#    #+#             */
-/*   Updated: 2024/11/06 04:08:00 by cmassol          ###   ########.fr       */
+/*   Created: 2024/11/06 03:08:48 by cmassol           #+#    #+#             */
+/*   Updated: 2024/11/06 04:05:45 by cmassol          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../include/libft.h"
+#include "../../include/push_swap.h"
 
-int	ft_strcmp(const char *str1, const char *str2)
+void	ft_free_split(char **split)
 {
-	while (*str1 != '\0' && *str2 != '\0' && *str1 == *str2)
+	int	i;
+
+	i = 0;
+	while (split[i])
 	{
-		str1++;
-		str2++;
+		free(split[i]);
+		i++;
 	}
-	return ((unsigned char)*str1 - (unsigned char)*str2);
+	free(split);
+}
+
+void	free_nodes(t_node *stack)
+{
+	t_node	*tmp;
+
+	while (stack)
+	{
+		tmp = stack;
+		stack = stack->next;
+		free(tmp);
+	}
 }

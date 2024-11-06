@@ -6,7 +6,7 @@
 /*   By: cmassol <cmassol@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/21 01:16:26 by cmassol           #+#    #+#             */
-/*   Updated: 2024/10/27 16:16:43 by cmassol          ###   ########.fr       */
+/*   Updated: 2024/11/05 23:47:48 by cmassol          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,7 @@
 # include <stddef.h>
 # include <stdlib.h>
 # include <unistd.h>
+# include <limits.h>
 
 typedef struct s_list
 {
@@ -29,9 +30,11 @@ typedef struct s_list_char
 	struct s_list_char	*next;
 }						t_lst_char;
 
+int						ft_isstrnum(char *str);
 void					ft_free(t_lst_char *lst);
 //static int				ft_free(char **s, size_t i);
 int						ft_atoi(const char *str);
+long					ft_atol(const char *str);
 int						ft_isalpha(int c);
 int						ft_isdigit(int c);
 int						ft_isalnum(int c);

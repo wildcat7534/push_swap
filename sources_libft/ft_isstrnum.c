@@ -1,23 +1,29 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_strcmp.c                                        :+:      :+:    :+:   */
+/*   ft_isstrnum.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: cmassol <cmassol@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/10/25 15:56:53 by cmassol           #+#    #+#             */
-/*   Updated: 2024/11/06 04:08:00 by cmassol          ###   ########.fr       */
+/*   Created: 2024/11/05 23:45:41 by cmassol           #+#    #+#             */
+/*   Updated: 2024/11/06 04:07:23 by cmassol          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/libft.h"
 
-int	ft_strcmp(const char *str1, const char *str2)
+int	ft_isstrnum(char *str)
 {
-	while (*str1 != '\0' && *str2 != '\0' && *str1 == *str2)
+	int	i;
+
+	i = 0;
+	if (str[i] == '-' || str[i] == '+')
+		i++;
+	while (str[i])
 	{
-		str1++;
-		str2++;
+		if (!ft_isdigit(str[i]))
+			return (0);
+		i++;
 	}
-	return ((unsigned char)*str1 - (unsigned char)*str2);
+	return (1);
 }

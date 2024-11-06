@@ -5,60 +5,31 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: cmassol <cmassol@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/10/25 11:50:52 by cmassol           #+#    #+#             */
-/*   Updated: 2024/10/25 22:54:15 by cmassol          ###   ########.fr       */
+/*   Created: 2024/11/01 22:38:32 by cmassol           #+#    #+#             */
+/*   Updated: 2024/11/06 04:03:51 by cmassol          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../include/push_swap.h"
 
-// push the top element of stack b to stack a
-void	pa(t_stack **stack_a, t_stack **stack_b)
+static void	push(t_node **stack_out, t_node **stack_in)
 {
-	int	i;
+	t_node	*change;
 
-	if ((*stack_b)->size == 0)
-		return ;
-	i = (*stack_a)->size;
-	while (i > 0)
-	{
-		(*stack_a)->nb[i] = (*stack_a)->nb[i - 1];
-		i--;
-	}
-	(*stack_a)->nb[0] = (*stack_b)->nb[0];
-	i = 0;
-	while (i < (*stack_b)->size - 1)
-	{
-		(*stack_b)->nb[i] = (*stack_b)->nb[i + 1];
-		i++;
-	}
-	(*stack_a)->size++;
-	(*stack_b)->size--;
-	(*stack_a)->size_instructions++;
+	change = *stack_out;
+	*stack_out = change->next;
+	change->next = *stack_in;
+	*stack_in = change;
+}
+
+void	pa(t_node **stack_a, t_node **stack_b)
+{
+	push(stack_b, stack_a);
 	ft_printf("pa\n");
 }
-// push the top element of stack a to stack b
-void	pb(t_stack **stack_a, t_stack **stack_b)
-{
-	int i;
 
-	if ((*stack_a)->size == 0)
-		return ;
-	i = (*stack_b)->size;
-	while (i > 0)
-	{
-		(*stack_b)->nb[i] = (*stack_b)->nb[i - 1];
-		i--;
-	}
-	(*stack_b)->nb[0] = (*stack_a)->nb[0];
-	i = 0;
-	while (i < (*stack_a)->size - 1)
-	{
-		(*stack_a)->nb[i] = (*stack_a)->nb[i + 1];
-		i++;
-	}
-	(*stack_b)->size++;
-	(*stack_a)->size--;
-	(*stack_a)->size_instructions++;
+void	pb(t_node **stack_a, t_node **stack_b)
+{
+	push(stack_a, stack_b);
 	ft_printf("pb\n");
 }

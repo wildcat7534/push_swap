@@ -6,7 +6,7 @@
 /*   By: cmassol <cmassol@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/17 16:08:18 by cmassol           #+#    #+#             */
-/*   Updated: 2024/10/26 13:03:58 by cmassol          ###   ########.fr       */
+/*   Updated: 2024/11/06 03:45:49 by cmassol          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,62 +16,46 @@
 # include "ft_printf.h"
 # include "libft.h"
 
-typedef struct s_stack
+typedef struct s_node
 {
-	struct s_stack	*prev;
-	struct s_stack	*next;
-	int				median;
+	int				nb;
 	int				index;
-	int				*nb;
-	int				size;
-	int				size_instructions;
-}					t_stack;
+	struct s_node	*next;
+}					t_node;
 
-void				sa(t_stack **stack);
-void				sb(t_stack **stack);
-void				ss(t_stack **stack, t_stack **stack_b);
-void				pa(t_stack **stack, t_stack **stack_b);
-void				pb(t_stack **stack, t_stack **stack_b);
-void				ra(t_stack **stack);
-void				rb(t_stack **stack);
-void				rr(t_stack **stack, t_stack **stack_b);
-void				rra(t_stack **stack);
-void				rrb(t_stack **stack);
-void				rrr(t_stack **stack, t_stack **stack_b);
-void				print_stack(t_stack *stack, t_stack *stack_b);
-void				print_nb_instructions(t_stack **stack);
-void				add_instruction(t_stack **stack, char *instruction);
-void				exec_instruction(t_stack *stack, char *instruction);
-int					check_errors(int ac, char **av);
-int					init_stack(t_stack **stack, int ac, char **av, t_stack **stack_b);
-int					is_number(char *str);
-int					has_duplicates(int *array, int size);
-int					parse_args(int ac, char **av, int **array);
-int					is_sorted(t_stack **stack);
-int					is_rev_sorted(t_stack *stack);
-int					is_median(t_stack *stack, int median);
-int					is_rev_median(t_stack *stack, int median);
-int					is_max(t_stack *stack, int max);
-int					is_min(t_stack *stack, int min);
-int					is_rev_max(t_stack *stack, int max);
-int					is_rev_min(t_stack *stack, int min);
-void				algo_sort(t_stack **stack_a, t_stack **stack_b);
-void				turkish_sort(t_stack **stack_a, t_stack **stack_b);
-void				ft_sort(t_stack **stack_a, t_stack **stack_b);
-void				ft_sort_three(t_stack **stack_a);
-void				ft_sort_10(t_stack **stack_a, t_stack **stack_b);
+int					get_position_in_stack(t_node **stack, int value);
+t_node				*init_node(int value);
+void				add_node_back(t_node **stack, t_node *new_node);
 void				ft_free_split(char **split);
-void				find_min_max_median(t_stack *stack, int *min, int *max, int *median);
-void				split_stack(t_stack **stack_a, int median, t_stack **stack_b);
-int					find_median(int *array, int size);
-void				merge_stack(t_stack **stack_a, t_stack **stack_b);
-int					get_index(int *nb, int value);
-int					find_min(t_stack *stack);
-int					find_max(t_stack *stack);
-int					find_largest_index(int *array, int size);
-void				push_largest_to_a(t_stack **stack_a, t_stack **stack_b);
-void				sort_array(int *array, int size);
-void				recursive_turkish_sort(t_stack **stack_a, t_stack **stack_b);
-void				sort_small_stack(t_stack **stack);
+void				free_nodes(t_node *stack);
+void				ft_sort(t_node **a, t_node **b);
+void				ft_error(void);
+void				index_init(t_node **stack, int len);
+void				sort_next(t_node **a, t_node **b);
+int					stack_size(t_node **stack);
+int					parse_arguments(int ac, char **av, int **numbers);
+void				print_stack(t_node **stack);
+int					first_half_check(t_node **b, int nb, int half_len);
+t_node				*find_max_node(t_node **stack);
+t_node				*find_min_node(t_node **stack);
+int					make_node(t_node **stack, int ac, char **av, int *size);
+void				ft_sort_10_node(t_node **stack_a, t_node **stack_b);
+void				ft_sort_three_node(t_node **stack_a);
+void				ft_index_sort(t_node **a, t_node **b, int start, int end);
+int					is_sorted_node(t_node **stack);
+int					get_index_node(t_node **stack, int nb);
+void				delete_node(t_node **stack, t_node *node_to_delete);
+void				pa(t_node **stack_a, t_node **stack_b);
+void				pb(t_node **stack_a, t_node **stack_b);
+void				sa(t_node **stack);
+void				sb(t_node **stack);
+void				ss(t_node **stack_a, t_node **stack_b);
+void				ra(t_node **stack);
+void				rb(t_node **stack);
+void				rr(t_node **stack_a, t_node **stack_b);
+void				rra(t_node **stack);
+void				rrb(t_node **stack);
+void				rrr(t_node **stack_a, t_node **stack_b);
+int					has_duplicates(int *array, int size);
 
 #endif
