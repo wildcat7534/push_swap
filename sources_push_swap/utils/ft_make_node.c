@@ -6,7 +6,7 @@
 /*   By: cmassol <cmassol@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/06 02:44:39 by cmassol           #+#    #+#             */
-/*   Updated: 2024/11/06 21:30:08 by cmassol          ###   ########.fr       */
+/*   Updated: 2024/11/10 20:51:38 by cmassol          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,7 +59,7 @@ int	parse_arguments(int ac, char **av, int *numbers)
 		{
 			if (!ft_isstrnum(split[j]) || ft_atol(split[j]) > INT_MAX
 				|| ft_atol(split[j]) < INT_MIN)
-				return (ft_free_split(split), ft_error(), -1);
+				return (free(numbers), ft_free_split(split), ft_error(), -1);
 			numbers[count++] = ft_atoi(split[j++]);
 		}
 		ft_free_split(split);

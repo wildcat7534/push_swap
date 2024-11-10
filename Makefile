@@ -22,7 +22,7 @@ PROGRAM = sources_push_swap/push_swap.c
 
 PROGRAMME_OUT = push_swap
 
-BONUS_CHECKER_OUT = checker_bonus
+BONUS_CHECKER_OUT = checker
 
 CFLAGS = -Werror -Wall -Wextra -g3
 
