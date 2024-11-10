@@ -6,15 +6,15 @@
 /*   By: cmassol <cmassol@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/17 16:08:18 by cmassol           #+#    #+#             */
-/*   Updated: 2024/11/06 03:45:49 by cmassol          ###   ########.fr       */
+/*   Updated: 2024/11/10 18:35:41 by cmassol          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef PUSH_SWAP_H
 # define PUSH_SWAP_H
 
-# include "ft_printf.h"
-# include "libft.h"
+# include "../libft/include/ft_printf.h"
+# include "../libft/include/libft.h"
 
 typedef struct s_node
 {
@@ -33,7 +33,7 @@ void				ft_error(void);
 void				index_init(t_node **stack, int len);
 void				sort_next(t_node **a, t_node **b);
 int					stack_size(t_node **stack);
-int					parse_arguments(int ac, char **av, int **numbers);
+int					parse_arguments(int ac, char **av, int *numbers);
 void				print_stack(t_node **stack);
 int					first_half_check(t_node **b, int nb, int half_len);
 t_node				*find_max_node(t_node **stack);
@@ -45,17 +45,17 @@ void				ft_index_sort(t_node **a, t_node **b, int start, int end);
 int					is_sorted_node(t_node **stack);
 int					get_index_node(t_node **stack, int nb);
 void				delete_node(t_node **stack, t_node *node_to_delete);
-void				pa(t_node **stack_a, t_node **stack_b);
-void				pb(t_node **stack_a, t_node **stack_b);
-void				sa(t_node **stack);
-void				sb(t_node **stack);
-void				ss(t_node **stack_a, t_node **stack_b);
-void				ra(t_node **stack);
-void				rb(t_node **stack);
-void				rr(t_node **stack_a, t_node **stack_b);
-void				rra(t_node **stack);
-void				rrb(t_node **stack);
-void				rrr(t_node **stack_a, t_node **stack_b);
+void				pa(t_node **stack_a, t_node **stack_b, int print);
+void				pb(t_node **stack_a, t_node **stack_b, int print);
+void				sa(t_node **stack, int print);
+void				sb(t_node **stack, int print);
+void				ss(t_node **stack_a, t_node **stack_b, int print);
+void				ra(t_node **stack, int print);
+void				rb(t_node **stack, int print);
+void				rr(t_node **stack_a, t_node **stack_b, int print);
+void				rra(t_node **stack, int print);
+void				rrb(t_node **stack, int print);
+void				rrr(t_node **stack_a, t_node **stack_b, int print);
 int					has_duplicates(int *array, int size);
 
 #endif

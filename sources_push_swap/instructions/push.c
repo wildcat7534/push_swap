@@ -6,7 +6,7 @@
 /*   By: cmassol <cmassol@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/01 22:38:32 by cmassol           #+#    #+#             */
-/*   Updated: 2024/11/06 04:03:51 by cmassol          ###   ########.fr       */
+/*   Updated: 2024/11/07 00:16:41 by cmassol          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,14 +22,16 @@ static void	push(t_node **stack_out, t_node **stack_in)
 	*stack_in = change;
 }
 
-void	pa(t_node **stack_a, t_node **stack_b)
+void	pa(t_node **stack_a, t_node **stack_b, int print)
 {
 	push(stack_b, stack_a);
-	ft_printf("pa\n");
+	if (print)
+		ft_printf("pa\n");
 }
 
-void	pb(t_node **stack_a, t_node **stack_b)
+void	pb(t_node **stack_a, t_node **stack_b, int print)
 {
 	push(stack_a, stack_b);
-	ft_printf("pb\n");
+	if (print)
+		ft_printf("pb\n");
 }

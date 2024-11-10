@@ -1,34 +1,28 @@
-NAME = libftprintf.a
+NAME = push_libft.a
 
-HEADERS = /libft.h ft_printf.h push_swap.h
+LIBFT_DIR = libft
 
-SOURCES_LIBFT = sources_ft_printf/ft_printf.c sources_ft_printf/ft_putcharlen.c sources_ft_printf/ft_putnbrhexlen.c \
-		sources_ft_printf/ft_putnbrlen.c sources_ft_printf/ft_putptrlen.c sources_ft_printf/ft_putstrlen.c \
-		sources_libft/ft_strlen.c sources_libft/ft_atoi.c sources_libft/ft_itoa.c sources_libft/ft_isdigit.c \
-		sources_libft/ft_free.c sources_libft/ft_split.c sources_libft/ft_strcmp.c sources_libft/ft_strdup.c \
-		sources_libft/ft_strlcpy.c sources_libft/ft_substr.c sources_libft/ft_nb_words.c sources_libft/ft_atol.c\
-		sources_libft/ft_isstrnum.c
+LIBFT = $(LIBFT_DIR)/libftprintf.a
 
-SOURCES_PRINTF = sources_ft_printf/ft_printf.c sources_ft_printf/ft_putcharlen.c sources_ft_printf/ft_putnbrhexlen.c \
-		sources_ft_printf/ft_putnbrlen.c sources_ft_printf/ft_putptrlen.c sources_ft_printf/ft_putstrlen.c
+HEADERS = libft.h ft_printf.h push_swap.h get_next_line.h
 
 SOURCES_PUSH_SWAP = sources_push_swap/utils/check_errors.c \
-					sources_push_swap/utils/print_stack.c sources_push_swap/utils/tools.c \
-					sources_push_swap/instructions/rotate.c sources_push_swap/instructions/push.c \
-					sources_push_swap/instructions/rev_rotate.c sources_push_swap/instructions/swap.c \
-					sources_push_swap/algo/ft_sort_three_node.c sources_push_swap/algo/ft_sort_10_node.c \
-					sources_push_swap/algo/ft_index_sort.c sources_push_swap/utils/ft_make_node.c\
-					sources_push_swap/utils/ft_free_mem.c
+                    sources_push_swap/utils/print_stack.c sources_push_swap/utils/tools.c \
+                    sources_push_swap/instructions/rotate.c sources_push_swap/instructions/push.c \
+                    sources_push_swap/instructions/rev_rotate.c sources_push_swap/instructions/swap.c \
+                    sources_push_swap/algo/ft_sort_three_node.c sources_push_swap/algo/ft_sort_10_node.c \
+                    sources_push_swap/algo/ft_index_sort.c sources_push_swap/utils/ft_make_node.c \
+                    sources_push_swap/utils/ft_free_mem.c
 
-PROGRAM = push_swap.c
+SOURCES_CHECKER = sources_push_swap/checker_bonus.c
+
+OBJECTS = $(SOURCES_PUSH_SWAP:.c=.o)
+
+PROGRAM = sources_push_swap/push_swap.c
 
 PROGRAMME_OUT = push_swap
 
-ARGS = 1 5 8 3 4 9
-
-INFO = libft printf push_swap
-
-OBJECTS = $(SOURCES_LIBFT:.c=.o) $(SOURCES_PRINTF:.c=.o) $(SOURCES_PUSH_SWAP:.c=.o)
+BONUS_CHECKER_OUT = checker_bonus
 
 CFLAGS = -Werror -Wall -Wextra -g3
 
@@ -37,8 +31,6 @@ CC = cc
 AR = ar rcs
 
 RM = rm -f
-
-# Colors
 
 DEF_COLOR = \033[0;39m
 GRAY = \033[0;90m
@@ -50,38 +42,40 @@ MAGENTA = \033[0;95m
 CYAN = \033[0;96m
 WHITE = \033[0;97m
 
-all: $(NAME)
+all: $(PROGRAMME_OUT)
+
+$(LIBFT):
+	$(MAKE) -C $(LIBFT_DIR)
 
 %.o: %.c $(HEADERS)
 	$(CC) $(CFLAGS) -c $< -o $@
 
-$(NAME): $(OBJECTS)
+$(PROGRAMME_OUT): $(LIBFT) $(OBJECTS)
 	@echo "              $(YELLOW) **** >>>>> Compiling: $(INFO) <<<<< **** $(DEF_COLOR)"
-	$(AR) $@ $^
+	$(CC) $(CFLAGS) $(PROGRAM) $(OBJECTS) -L$(LIBFT_DIR) -lftprintf -o $(PROGRAMME_OUT)
 	@echo ""
 	@echo ""
-	@echo "$(MAGENTA)>>>>> $(INFO) compiled!$(DEF_COLOR)"
-
-all: push_swap.c
-	@echo ""
-	@echo "$(GREEN)          () ()$(DEF_COLOR)"
+	@echo "$(GREEN)          () () $(DEF_COLOR)"
 	@echo "$(GREEN)          (>.<) $(DEF_COLOR)"
 	@echo "$(GREEN)          ( . ) $(DEF_COLOR)"
-	@echo "$(GREEN)           n_n $(DEF_COLOR)"
-	$(CC) $(CFLAGS) $(PROGRAM) $(NAME) -o $(PROGRAMME_OUT)
-	@echo ""
-	@echo "$(MAGENTA)>>>>> Programme : $(PROGRAMME_OUT) compiled!$(DEF_COLOR)"
-	@echo ""
-	@echo ""
+	@echo "$(GREEN)           n_n  $(DEF_COLOR)"
+	@echo "$(MAGENTA)>>>>> $(INFO) compiled!$(DEF_COLOR)"
+
+bonus: $(LIBFT) $(OBJECTS)
+	@echo "$(YELLOW)**** Compiling checker_bonus ****$(DEF_COLOR)"
+	$(CC) $(CFLAGS) $(SOURCES_CHECKER) $(OBJECTS) -L$(LIBFT_DIR) -lftprintf -o $(BONUS_CHECKER_OUT)
+	@echo "$(GREEN)Checker bonus created successfully!$(DEF_COLOR)"
 
 clean:
 	$(RM) $(OBJECTS)
+	$(MAKE) -C $(LIBFT_DIR) clean
 	@echo "$(MAGENTA)CLEAN OBJECTS FOR :  $(OBJECTS) ! $(DEF_COLOR)"
 	
 fclean: clean
-	$(RM) $(NAME)
+	$(RM) $(PROGRAMME_OUT) $(BONUS_CHECKER_OUT)
+	$(MAKE) -C $(LIBFT_DIR) fclean
 	@echo "$(MAGENTA)CLEAN NAME FOR :  $(OBJECTS) ! $(DEF_COLOR)"
 
 re: fclean all
 
-.PHONY: clean fclean all re
+.PHONY: clean fclean all re bonus

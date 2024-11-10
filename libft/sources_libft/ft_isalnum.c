@@ -1,33 +1,21 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   push_swap.c                                        :+:      :+:    :+:   */
+/*   ft_isalnum.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: cmassol <cmassol@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/10/17 15:59:57 by cmassol           #+#    #+#             */
-/*   Updated: 2024/11/06 04:13:52 by cmassol          ###   ########.fr       */
+/*   Created: 2024/05/22 13:08:11 by cmassol           #+#    #+#             */
+/*   Updated: 2024/05/23 17:04:01 by cmassol          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "include/push_swap.h"
-
-int	main(int ac, char **av)
+int	ft_isalnum(int c)
 {
-	t_node	*a;
-	t_node	*b;
-	int		size;
-
-	a = NULL;
-	b = NULL;
-	if (ac < 2)
+	if (c >= '0' && c <= '9')
 		return (1);
-	if (make_node(&a, ac, av, &size))
-		return ((write(2, "Error\n", 6)), 1);
-	if (is_sorted_node(&a))
-		return (free_nodes(a), 0);
-	ft_sort(&a, &b);
-	free_nodes(a);
-	free_nodes(b);
-	return (0);
+	else if ((c >= 'a' && c <= 'z') || (c >= 'A' && c <= 'Z'))
+		return (1);
+	else
+		return (0);
 }

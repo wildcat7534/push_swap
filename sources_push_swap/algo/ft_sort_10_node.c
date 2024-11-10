@@ -6,7 +6,7 @@
 /*   By: cmassol <cmassol@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/25 20:22:40 by cmassol           #+#    #+#             */
-/*   Updated: 2024/11/06 04:03:07 by cmassol          ###   ########.fr       */
+/*   Updated: 2024/11/07 00:21:32 by cmassol          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,15 +24,15 @@ void	ft_sort_10_node(t_node **stack_a, t_node **stack_b)
 		while ((*stack_a)->nb != min)
 		{
 			if (get_position_in_stack(stack_a, min) <= stack_size(stack_a) / 2)
-				ra(stack_a);
+				ra(stack_a, 1);
 			else
-				rra(stack_a);
+				rra(stack_a, 1);
 		}
-		pb(stack_a, stack_b);
+		pb(stack_a, stack_b, 1);
 	}
 	ft_sort_three_node(stack_a);
 	while (stack_size(stack_b) > 0)
-		pa(stack_a, stack_b);
+		pa(stack_a, stack_b, 1);
 }
 
 int	get_position_in_stack(t_node **stack, int value)

@@ -6,7 +6,7 @@
 /*   By: cmassol <cmassol@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/05 22:49:27 by cmassol           #+#    #+#             */
-/*   Updated: 2024/11/06 03:23:59 by cmassol          ###   ########.fr       */
+/*   Updated: 2024/11/07 00:21:32 by cmassol          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,19 +24,19 @@ void	ft_index_sort(t_node **a, t_node **b, int start, int end)
 	{
 		if ((*a)->index <= (start))
 		{
-			pb(a, b);
-			rb(b);
+			pb(a, b, 1);
+			rb(b, 1);
 			(start)++;
 			(end)++;
 		}
 		else if ((*a)->index > (start) && (*a)->index < (end))
 		{
-			pb(a, b);
+			pb(a, b, 1);
 			(start)++;
 			(end)++;
 		}
 		else if ((*a)->index >= (end))
-			ra(a);
+			ra(a, 1);
 	}
 	sort_next(a, b);
 }
@@ -54,11 +54,11 @@ void	sort_next(t_node **a, t_node **b)
 		while ((*b)->nb != checkpoint->nb)
 		{
 			if (half == 1)
-				rb(b);
+				rb(b, 1);
 			else
-				rrb(b);
+				rrb(b, 1);
 		}
-		pa(a, b);
+		pa(a, b, 1);
 	}
 }
 

@@ -6,7 +6,7 @@
 /*   By: cmassol <cmassol@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/01 22:42:29 by cmassol           #+#    #+#             */
-/*   Updated: 2024/11/06 04:04:16 by cmassol          ###   ########.fr       */
+/*   Updated: 2024/11/07 00:17:15 by cmassol          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,25 +26,28 @@ static void	rev_rotate(t_node **stack)
 	current->next = NULL;
 }
 
-void	rra(t_node **stack)
+void	rra(t_node **stack, int print)
 {
 	if (!*stack || !(*stack)->next)
 		return ;
 	rev_rotate(stack);
-	ft_printf("rra\n");
+	if (print)
+		ft_printf("rra\n");
 }
 
-void	rrb(t_node **stack)
+void	rrb(t_node **stack, int print)
 {
 	if (!*stack || !(*stack)->next)
 		return ;
 	rev_rotate(stack);
-	ft_printf("rrb\n");
+	if (print)
+		ft_printf("rrb\n");
 }
 
-void	rrr(t_node **stack_a, t_node **stack_b)
+void	rrr(t_node **stack_a, t_node **stack_b, int print)
 {
-	rra(stack_a);
-	rrb(stack_b);
-	ft_printf("rrr\n");
+	rra(stack_a, 0);
+	rrb(stack_b, 0);
+	if (print)
+		ft_printf("rrr\n");
 }

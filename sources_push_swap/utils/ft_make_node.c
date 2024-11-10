@@ -6,7 +6,7 @@
 /*   By: cmassol <cmassol@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/06 02:44:39 by cmassol           #+#    #+#             */
-/*   Updated: 2024/11/06 04:05:34 by cmassol          ###   ########.fr       */
+/*   Updated: 2024/11/06 21:30:08 by cmassol          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,7 +40,7 @@ void	add_node_back(t_node **stack, t_node *new_node)
 	}
 }
 
-int	parse_arguments(int ac, char **av, int **numbers)
+int	parse_arguments(int ac, char **av, int *numbers)
 {
 	int		count;
 	int		i;
@@ -59,8 +59,8 @@ int	parse_arguments(int ac, char **av, int **numbers)
 		{
 			if (!ft_isstrnum(split[j]) || ft_atol(split[j]) > INT_MAX
 				|| ft_atol(split[j]) < INT_MIN)
-				return (free(numbers), ft_free_split(split), ft_error(), -1);
-			(*numbers)[count++] = ft_atoi(split[j++]);
+				return (ft_free_split(split), ft_error(), -1);
+			numbers[count++] = ft_atoi(split[j++]);
 		}
 		ft_free_split(split);
 		i++;
@@ -71,10 +71,10 @@ int	parse_arguments(int ac, char **av, int **numbers)
 int	prepare_numbers(int ac, char **av, int **numbers, int *size)
 {
 	*numbers = malloc(sizeof(int) * (ac - 1) * ft_nb_words(av[1], ' '));
-	if (!numbers)
+	if (!*numbers)
 		return (1);
-	*size = parse_arguments(ac, av, numbers);
-	if (has_duplicates(*numbers, ac - 1))
+	*size = parse_arguments(ac, av, *numbers);
+	if (has_duplicates(*numbers,*size))
 	{
 		free(*numbers);
 		return (1);
